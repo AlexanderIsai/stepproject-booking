@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -11,10 +13,20 @@ public class Passenger {
 
     private String name;
     private String surname;
+    private List<Booking> bookings;
 
     public Passenger(String name, String surname) {
         this.name = name;
         this.surname = surname;
+        this.bookings = new ArrayList<>();
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
     @Override
