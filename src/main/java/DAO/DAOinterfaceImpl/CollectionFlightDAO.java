@@ -31,11 +31,17 @@ public class CollectionFlightDAO implements FlightDAO {
     }
 
     @Override
+    public void setFlights(Set<Flight> flights) {
+        this.flights = flights;
+    }
+
+
+    @Override
     public Flight getFlightByFlightNumber(String flightNumber) {
         List<Flight> requiredFlight = this.flights.stream()
                 .filter(flight ->
                         (flight.getFlightNumber()).equals(flightNumber))
-                .collect(Collectors.toList());
+                .toList();
         if (requiredFlight.size() == 0) throw new FlightException(flightNumber);
         return requiredFlight.get(0);
     }
@@ -130,7 +136,6 @@ public class CollectionFlightDAO implements FlightDAO {
 
     @Override
     public void loadData(Set flights) {
-        this.flights = new HashSet<>();
-        this.flights.addAll(flights);
+        this.setFlights(flights);
     }
 }

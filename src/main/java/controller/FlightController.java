@@ -1,5 +1,6 @@
 package controller;
 
+import dto.SearchFlightDTO2;
 import entity.Flight;
 import service.serviseInterfaceImpl.FlightServiceImpl;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class FlightController {
+
     private final FlightServiceImpl flightServiceImpl;
 
     public FlightController(FlightServiceImpl flightServiceImpl) {
@@ -55,5 +57,9 @@ public class FlightController {
 
     public void displayAllFlights(List<Flight> flights) {
         flightServiceImpl.displayAllFlights(flights);
+    }
+
+    public List<Flight> searchFlight(SearchFlightDTO2 searchFlightDTO2) {
+        return flightServiceImpl.searchFlight(searchFlightDTO2);
     }
 }
