@@ -78,7 +78,7 @@ public class BookingServiceImpl implements BookingService {
                         .filter(passenger -> passenger != null && passenger.equals(activePassenger))
                                 .findFirst();
         if (exceptPassenger.isPresent()){
-            Logger.info("Знайдено пасажира " + exceptPassenger + " в БД");
+            Logger.info("Знайдено пасажира " + exceptPassenger.get() + " в БД");
             return exceptPassenger.get();
         }
         else {
