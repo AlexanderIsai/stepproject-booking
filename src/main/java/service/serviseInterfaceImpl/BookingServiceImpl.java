@@ -38,7 +38,7 @@ public class BookingServiceImpl implements BookingService {
         if(index >= 0){
             passenger = getAllPassengers().get(index);
         }
-        Booking booking = new Booking(passenger, bookingFlightDTO.getFlight(), createBookingId());
+        Booking booking = new Booking(passenger, bookingFlightDTO.getFlight(), createBookingId(), bookingFlightDTO.getAuthor());
         passenger.addBooking(booking);
         bookingDAO.saveBooking(booking);
     }
@@ -46,8 +46,8 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<Booking> getAllBookingByPassenger(Passenger passenger) {
         Logger.info("Пошук пасажира " + passenger + " в БД");
-        return bookingDAO.getAllBooking().stream()
-                .filter(booking -> booking != null && booking.getPassenger().equals(passenger))
+        return bookingDAO.getAllBooking().stream().filter(Objects::nonNull)
+                .filter(booking -> booking.getPassenger().equals(passenger) || booking.getAuthor().equals(passenger))
                 .toList();
     }
 

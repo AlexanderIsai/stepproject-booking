@@ -1,6 +1,7 @@
 package dto;
 
 import entity.Flight;
+import entity.Passenger;
 
 import java.util.Objects;
 
@@ -15,11 +16,13 @@ public class BookingFlightDTO {
     private String name;
     private String surname;
     private Flight flight;
+    private Passenger author;
 
-    public BookingFlightDTO(String name, String surname, Flight flight) {
+    public BookingFlightDTO(String name, String surname, Flight flight, Passenger author) {
         this.name = name;
         this.surname = surname;
         this.flight = flight;
+        this.author = author;
     }
 
     public Flight getFlight() {
@@ -46,6 +49,13 @@ public class BookingFlightDTO {
         this.surname = surname;
     }
 
+    public Passenger getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Passenger author) {
+        this.author = author;
+    }
 
     @Override
     public boolean equals(Object o) {
