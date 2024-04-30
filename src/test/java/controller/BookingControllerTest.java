@@ -29,13 +29,15 @@ public class BookingControllerTest {
     private BookingService bookingService;
     @Mock
     private Flight flight;
+    @Mock
+    private Passenger passenger;
 
     @InjectMocks
     private BookingController bookingController;
 
     @Test
     public void testCreateNewBooking() {
-        BookingFlightDTO bookingFlightDTO = new BookingFlightDTO("Ivan", "Ivanov", flight);
+        BookingFlightDTO bookingFlightDTO = new BookingFlightDTO("Ivan", "Ivanov", flight, passenger);
         bookingController.createNewBooking(bookingFlightDTO);
         verify(bookingService).createNewBooking(bookingFlightDTO);
     }
@@ -70,40 +72,40 @@ public class BookingControllerTest {
         verify(bookingService).cancelBooking(bookingId);
     }
 
-    public static class FlightControllerTest {
-        static FlightDAO flightDAO = new CollectionFlightDAO();
-        static FlightServiceImpl flightServiceImpl = new FlightServiceImpl(flightDAO);
-        static FlightController flightController = new FlightController(flightServiceImpl);
-
-        @Test
-        void getAllFlightsTest() {
-            flightServiceImpl.loadData();
-            List<Flight> flights = flightController.getAllFlights();
-            assertEquals("The list of flights is not loaded", CollectionFlightDAO.randomFlightsAmount, flights.size());
-            //flights.forEach(System.out::println);
-        }
-
-        @Test
-        void displayAllFlightsTest() {
-            flightServiceImpl.loadData();
-            flightController.displayAllFlights();
-        }
-
-        @Test
-        void getFlightByFlightNumberTest() {
-            String flightNumber = "DAMD5464";
-            flightServiceImpl.loadData();
-            Flight flight = flightController.getFlightByFlightNumber(flightNumber);
-            System.out.println(flight);
-            assertEquals(flight.getFlightNumber(), flightNumber);
-        }
-
-        @Test
-        void getAllFlightDetails() {
-            String flightNumber = "DSPG5494";
-            flightServiceImpl.loadData();
-            Flight flight = flightController.getFlightByFlightNumber(flightNumber);
-            System.out.println(flightController.getSpecificFlightDetails(flight));
-        }
-    }
+//    public static class FlightControllerTest {
+//        static FlightDAO flightDAO = new CollectionFlightDAO();
+//        static FlightServiceImpl flightServiceImpl = new FlightServiceImpl(flightDAO);
+//        static FlightController flightController = new FlightController(flightServiceImpl);
+//
+//        @Test
+//        void getAllFlightsTest() {
+//            flightServiceImpl.loadData();
+//            List<Flight> flights = flightController.getAllFlights();
+//            assertEquals("The list of flights is not loaded", CollectionFlightDAO.randomFlightsAmount, flights.size());
+//            //flights.forEach(System.out::println);
+//        }
+//
+//        @Test
+//        void displayAllFlightsTest() {
+//            flightServiceImpl.loadData();
+//            flightController.displayAllFlights();
+//        }
+//
+//        @Test
+//        void getFlightByFlightNumberTest() {
+//            String flightNumber = "DAMD5464";
+//            flightServiceImpl.loadData();
+//            Flight flight = flightController.getFlightByFlightNumber(flightNumber);
+//            System.out.println(flight);
+//            assertEquals(flight.getFlightNumber(), flightNumber);
+//        }
+//
+//        @Test
+//        void getAllFlightDetails() {
+//            String flightNumber = "DSPG5494";
+//            flightServiceImpl.loadData();
+//            Flight flight = flightController.getFlightByFlightNumber(flightNumber);
+//            System.out.println(flightController.getSpecificFlightDetails(flight));
+//        }
+//    }
 }

@@ -193,7 +193,7 @@ public class ConsoleClass {
                 .forEach(i -> {
                     String name = setName();
                     String surname = setSurname();
-                    bookingController.createNewBooking(new BookingFlightDTO(name,surname, selectedFlight));
+                    bookingController.createNewBooking(new BookingFlightDTO(name,surname, selectedFlight, passenger));
                 });
         try {
             flightController.bookSeats(selectedFlight,countPassengers);

@@ -28,6 +28,8 @@ public class BookingServiceImplTest {
 
     @Mock
     private Flight flight;
+    @Mock
+    private Passenger author;
 
     @InjectMocks
     private BookingServiceImpl bookingService;
@@ -39,8 +41,8 @@ public class BookingServiceImplTest {
     @BeforeEach
     public void setup() {
         passenger = new Passenger("Ivan", "Ivanov");
-        bookingFlightDTO = new BookingFlightDTO("Ivan", "Ivanov", flight);
-        booking = new Booking(passenger, flight, 1);
+        bookingFlightDTO = new BookingFlightDTO("Ivan", "Ivanov", flight, author);
+        booking = new Booking(passenger, flight, 1, author);
     }
 
     @Test

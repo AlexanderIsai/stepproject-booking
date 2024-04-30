@@ -19,6 +19,8 @@ public class BookingTest {
     private Flight mockFlight1;
     @Mock
     private Flight mockFlight2;
+    @Mock
+    private Passenger author;
 
     private Booking booking1;
     private Booking booking2;
@@ -27,8 +29,8 @@ public class BookingTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        booking1 = new Booking(mockPassenger1, mockFlight1, 1);
-        booking2 = new Booking(mockPassenger1, mockFlight1, 2);
+        booking1 = new Booking(mockPassenger1, mockFlight1, 1, author);
+        booking2 = new Booking(mockPassenger1, mockFlight1, 2, author);
     }
 
     @Test
@@ -38,13 +40,13 @@ public class BookingTest {
 
     @Test
     public void testBookingObjectsAreNotEqualWithDifferentPassenger() {
-        Booking booking3 = new Booking(mockPassenger2, mockFlight1, 3);
+        Booking booking3 = new Booking(mockPassenger2, mockFlight1, 3, author);
         assertNotEquals("Expected bookings to not be equal due to different passengers", booking1, booking3);
     }
 
     @Test
     public void testBookingObjectsAreNotEqualWithDifferentFlight() {
-        Booking booking3 = new Booking(mockPassenger1, mockFlight2, 4);
+        Booking booking3 = new Booking(mockPassenger1, mockFlight2, 4, author);
         assertNotEquals("Expected bookings to not be equal due to different flights", booking1, booking3);
     }
 
@@ -55,7 +57,7 @@ public class BookingTest {
 
     @Test
     public void testHashCodeDifferentForDifferentObjects() {
-        Booking booking3 = new Booking(mockPassenger2, mockFlight1, 5);
+        Booking booking3 = new Booking(mockPassenger2, mockFlight1, 5, author);
         assertNotEquals("Expected different hash codes for different bookings", booking1.hashCode(), booking3.hashCode());
     }
 
@@ -63,7 +65,7 @@ public class BookingTest {
     public void testToStringUsesMockToString() {
         when(mockPassenger1.toString()).thenReturn("MockPassenger1");
         when(mockFlight1.toString()).thenReturn("MockFlight1");
-        String expected = "Booking{id=" + booking1.getId() + ", passenger=MockPassenger1, flight=MockFlight1}";
+        String expected = "Booking{id=" + booking1.getId() + ", passenger=MockPassenger1, flight=MockFlight1, author=author}";
         assertEquals("Expected toString to match", expected, booking1.toString());
     }
 }

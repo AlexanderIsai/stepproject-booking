@@ -14,14 +14,16 @@ public class Booking implements Serializable {
     private int id;
     private Passenger passenger;
     private Flight flight;
+    private Passenger author;
 
     public Booking() {
     }
 
-    public Booking(Passenger passenger, Flight flight, int id) {
+    public Booking(Passenger passenger, Flight flight, int id, Passenger author) {
         this.id = id;
         this.passenger = passenger;
         this.flight = flight;
+        this.author = author;
     }
 
     public void setId(int id) {
@@ -48,6 +50,13 @@ public class Booking implements Serializable {
         this.flight = flight;
     }
 
+    public Passenger getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Passenger author) {
+        this.author = author;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -68,6 +77,7 @@ public class Booking implements Serializable {
                 "id=" + id +
                 ", passenger=" + passenger +
                 ", flight=" + flight +
+                ", author=" + author +
                 '}';
     }
 }
